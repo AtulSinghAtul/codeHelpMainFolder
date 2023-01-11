@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Component</title>
+
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body{
+       background-color: #1e1e1e;
+       font-family: sans-serif;
+      }
+      .card-container{
+        background-color: #fff;
+        width: 40vw;
+        height: fit-content;
+        margin:70px  auto;
+     
+      }
+      .card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 25px;
+      }
+      .card-img >img{
+        width: 100%;
+        border-radius: 10px;
+      }
+      .heading>h1{
+        width: 70%;
+      }
+      .line{
+        width: 65%;
+        height: 2px;
+        background-color: rgb(211, 210, 210);
+        border-radius: 2px;
+      }
+
+      .price-section{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: baseline;
+        gap: 20px;
+        width: 90%;
+      }
+      .current-price{
+        font-weight: 800;
+        color: rgb(83, 150, 251);
+      }
+      .mark-price{
+        font-weight: 800;
+        color: rgb(125, 125, 125);
+      }
+      .discount{
+        font-weight: 700;
+        color: #fff;
+        background-color: #65b359;
+        border-radius: 5px;
+        padding: 8px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="card-container">
+    <div class="card">
+
+      <div class="card-img"><img src="./assets/card-img.jpeg" alt="card-img" /></div>
+
+      <div class="heading">
+        <h1>Web Development Master Course @dot Batch</h1>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="price-section">
+        <span class="current-price">&#8377 4500</span>
+        <span class="mark-price">&#8377 <del>6999</del> </span>
+        <span class="discount">42% off</span>
+      </div>
+
+    </div>
+  </div>
+  </body>
+</html>
