@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hire Me Button</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #wrapper {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(149, 146, 146);
+      }
+
+      .hire-me {
+        position: relative;
+        background-color: rgb(246, 42, 42);
+        border: none;
+        color: #fff;
+        padding: 10px 25px;
+        box-shadow: 2px 2px 5px 0 rgb(227, 226, 226);
+        z-index: 1;
+      }
+      .hire-me::before {
+        content: "";
+        background-color: black;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        transform: scaleX(0%);
+      }
+      .hire-me:hover::before {
+        transform: scaleX(100%);
+        transform-origin: left;
+        transition-timing-function: ease-out;
+        transition-duration: 0.8s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <button class="hire-me">Hire Me</button>
+    </div>
+  </body>
+</html>
