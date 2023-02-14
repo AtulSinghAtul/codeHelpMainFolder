@@ -34,5 +34,46 @@ delete rectangleObject1.color;
 //console.log(rectangleObject1);
 
 // constructor property
-console.log(rectangleObject1.constructor);
-console.log(Rectangle1.constructor);
+//console.log(rectangleObject1.constructor);
+//console.log(Rectangle1.constructor);
+
+// how internally create  construcor function of object
+
+let Rectangle2 = new Function(
+  "len",
+  " bre",
+  `
+this.length = len;
+this.breadth = bre;
+this.draw = function () {
+  console.log("drawing");
+};`
+);
+
+let rectangleObject2 = new Rectangle2(4, 6);
+// console.log(rectangleObject2);
+
+// console.log(rectangleObject2.constructor);
+// console.log(Rectangle2.constructor); // ƒ Function() { [native code] }
+
+// difference between primitive  & reference type data
+
+// primitive type
+//  primitive data type k andar same  memory address point nhi hota hai kyunki sabhi ki copy banti hai aur sabhi copy ki alag alag memory address hota hai.
+let a = 10;
+let b = a;
+
+a++;
+console.log(a); //11
+console.log(b); //10
+
+//reference type
+// reference data type k andar same hi memory address point hota hai.
+
+let a1 = { value: 10 };
+let b1 = a1;
+
+a1.value++;
+
+console.log(a1); // 11
+console.log(b1); // 11
