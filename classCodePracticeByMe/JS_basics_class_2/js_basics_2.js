@@ -118,3 +118,31 @@ let rectangle = {
 // for (let key of Object.entries(rectangle)) {
 //   console.log(key);
 // }
+
+// Object Cloning
+// iteration, assign, spread
+
+// cloning through iteration(for-in)
+
+let src = { a: 10, b: 20, c: 30 };
+let desti = {};
+
+for (let key in src) {
+  desti[key] = src[key];
+}
+//console.log(desti); // {a: 10, b: 20, c: 30} cloned object
+//increment karne par sirf src k a ki value badh rahi hai desti ki nhi to kahne ka matlab ham reference type me clone banane me safal ho gaye hain .
+// hame reference type k data ka clone isliye banana pada kyunki
+console.log(src.a++); //10
+console.log(src); //{a: 11, b: 20, c: 30}
+console.log(desti); //{a: 10, b: 20, c: 30}
+
+// cloning through assign
+let src1 = { a: 10, b: 20, c: 30 };
+let desti1 = Object.assign({}, src1);
+//console.log(desti1); // {a: 10, b: 20, c: 30}cloned object
+
+//cloning through spread
+let src2 = { a: 10, b: 20, c: 30 };
+let desti2 = { ...src2 };
+//console.log(desti2); // {a: 10, b: 20, c: 30}cloned object
