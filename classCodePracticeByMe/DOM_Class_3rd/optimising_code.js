@@ -1,5 +1,6 @@
-// 100 para
+//add 100 para
 // using time stamp to know how many time take to  run
+// Performance of code
 let t1 = performance.now();
 for (let i = 1; i <= 100; i++) {
   let newElement = document.createElement("p");
@@ -25,7 +26,7 @@ let t4 = performance.now(); // time stamp
 
 console.log("Time took " + (t4 - t3) + " ms");
 
-// Using Fragment to stop 100 Reflow and 100 Repaint and this fragment is optimising performance of code
+// Using Document Fragment to stop 100 Reflow and 100 Repaint and this fragment is optimising performance of code
 let t5 = performance.now(); // time stamp
 
 let fragment = document.createDocumentFragment();
