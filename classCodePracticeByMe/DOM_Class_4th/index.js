@@ -71,19 +71,41 @@
 // console.log("pehala");
 
 // shortcut to using then and catch
-let meraPromise2 = new Promise(function (resolve, reject) {
-  setTimeout(function () {
-    console.log("I am inside promise 2");
-  }, 3000);
-  //resolve(2233);
-  reject(new Error("Bhaisahab error aaye hain"));
+// let meraPromise2 = new Promise(function (resolve, reject) {
+//   setTimeout(function () {
+//     console.log("I am inside promise 2");
+//   }, 3000);
+//   //resolve(2233);
+//   reject(new Error("Bhaisahab error aaye hain"));
+// });
+// meraPromise2.then(
+//   (value) => {
+//     console.log(value);
+//   },
+//   (error) => {
+//     console.log("Received an error");
+//   }
+// );
+// console.log("pehala");
+
+// using then chaining
+let waada1 = new Promise(function (resolve, reject) {
+  setTimeout(() => {
+    console.log("setTimeout1 started");
+  }, 2000);
+  resolve(true);
 });
-meraPromise2.then(
-  (value) => {
-    console.log(value);
-  },
-  (error) => {
-    console.log("Received an error");
-  }
-);
-console.log("pehala");
+
+let output = waada1.then(() => {
+  let waada2 = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      console.log("setTimeout2 started");
+    }, 3000);
+    resolve("waada2 resolved");
+  });
+  return waada2;
+});
+
+output.then((value) => {
+  console.log(value);
+});
