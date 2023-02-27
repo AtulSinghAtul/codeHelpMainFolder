@@ -88,24 +88,53 @@
 // );
 // console.log("pehala");
 
-// using then chaining
-let waada1 = new Promise(function (resolve, reject) {
-  setTimeout(() => {
-    console.log("setTimeout1 started");
-  }, 2000);
-  resolve(true);
-});
+// using then() method chaining
+// let waada1 = new Promise(function (resolve, reject) {
+//   setTimeout(() => {
+//     console.log("setTimeout1 started");
+//   }, 2000);
+//   resolve(true);
+// });
 
-let output = waada1.then(() => {
-  let waada2 = new Promise(function (resolve, reject) {
+// let output = waada1.then(() => {
+//   let waada2 = new Promise(function (resolve, reject) {
+//     setTimeout(() => {
+//       console.log("setTimeout2 started");
+//     }, 3000);
+//     resolve("waada2 resolved");
+//   });
+//   return waada2;
+// });
+
+// output.then((value) => {
+//   console.log(value);
+// });
+
+// Async await Example
+
+// async function abcd() {
+//   return 7;
+// }
+async function utility() {
+  let delhiMausam = new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log("setTimeout2 started");
-    }, 3000);
-    resolve("waada2 resolved");
+      resolve("delhi ka mausam aaj bahut garm hai");
+    }, 2000);
+  }).then((value) => {
+    console.log(value);
   });
-  return waada2;
-});
 
-output.then((value) => {
-  console.log(value);
-});
+  let hydMausam = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Hyderabad ka mausam aaj achha hai");
+    }, 5000);
+  }).then((value) => {
+    console.log(value);
+  });
+
+  let dM = await delhiMausam;
+  let hM = await hydMausam;
+
+  return [dM, hM];
+}
+utility();
