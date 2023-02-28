@@ -115,26 +115,60 @@
 // async function abcd() {
 //   return 7;
 // }
-async function utility() {
-  let delhiMausam = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("delhi ka mausam aaj bahut garm hai");
-    }, 2000);
-  }).then((value) => {
-    console.log(value);
-  });
+// async function utility() {
+//   let delhiMausam = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve("delhi ka mausam aaj bahut garm hai");
+//     }, 2000);
+//   }).then((value) => {
+//     console.log(value);
+//   });
 
-  let hydMausam = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("Hyderabad ka mausam aaj achha hai");
-    }, 5000);
-  }).then((value) => {
-    console.log(value);
-  });
+//   let hydMausam = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve("Hyderabad ka mausam aaj achha hai");
+//     }, 5000);
+//   }).then((value) => {
+//     console.log(value);
+//   });
 
-  let dM = await delhiMausam;
-  let hM = await hydMausam;
+//   let dM = await delhiMausam;
+//   let hM = await hydMausam;
 
-  return [dM, hM];
+//   return [dM, hM];
+// }
+// utility();
+
+//create post call in fetch API
+
+async function helper() {
+  let options = {
+    method: "POST",
+    body: JSON.stringify({
+      title: "Atul",
+      body: "stealth",
+      userId: 1,
+    }),
+
+    headers: {
+      "Content-type": "application/json; charset= UTF-8",
+    },
+  };
+
+  let content = await fetch(
+    "https://jsonplaceholder.typicode.com/posts",
+    options
+  );
+  console.log(content);
+
+  let response = content.json();
+  console.log(response);
+  return response;
 }
-utility();
+
+async function utility() {
+  let ans = await helper();
+  console.log(ans);
+}
+
+console.log(utility());
