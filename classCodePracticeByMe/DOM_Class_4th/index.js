@@ -172,3 +172,5 @@ async function utility() {
 }
 
 console.log(utility());
+
+// Closure
