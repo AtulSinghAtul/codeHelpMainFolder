@@ -1,6 +1,6 @@
 const inputSlider = document.querySelector("[data-lengthSlider]");
 const lengthDisplay = document.querySelector("[data-lengthNumber]");
-const passwordDisplay = document.querySelector("[data=passwordDisplay]");
+const passwordDisplay = document.querySelector("[data-passwordDisplay]");
 const copyBtn = document.querySelector("[data-copy]");
 const copyMsg = document.querySelector("[data-copyMsg]");
 const uppercaseCheck = document.querySelector("#uppercase");
@@ -11,7 +11,7 @@ const indicator = document.querySelector("[data-indicator]");
 const generateBtn = document.querySelector(".generateButton");
 const allCheckBox = document.querySelectorAll("input[type=checkbox]");
 let symbols = ",.`~!@#$%^&*()_-+=[]{}|;',?/<>:";
-console.log(symbols[8]);
+
 let password = "";
 let passwordLength = 10;
 let checkCount = 1;
@@ -48,7 +48,57 @@ function generateUpperCase() {
 
 function generateSymbol() {
   const randNum = getRndInteger(0, symbols.length);
-  return symbols[randNum];
+  return symbols.charAt(randNum);
 }
 
-console.log(generateSymbol());
+function calcStrength() {
+  let hasUpper = false;
+  let hasLower = false;
+  let hasNum = false;
+  let hasSym = false;
+
+  if (uppercaseCheck.checked) hasUpper = true;
+  if (lowercaseCheck.checked) hasUpper = true;
+  if (numbersCheck.checked) hasUpper = true;
+  if (symbolsCheck.checked) hasUpper = true;
+
+  if (hasUpper && hasLower && (hasNum || hasSym) && password.length >= 8) {
+    setIndicator("#0f0");
+  } else if (
+    (hasLower || hasUpper) &&
+    (hasNum || hasSym) &&
+    password.length >= 6
+  ) {
+    setIndicator("#ff0");
+  } else {
+    setIndicator("#f00");
+  }
+}
+
+async function copyContent() {
+  try {
+    await navigator.clipboard.writeText(passwordDisplay.value);
+    copyMsg.innerText = "copied";
+  } catch (e) {
+    copyMsg.innerText = "failed";
+  }
+}
+
+//to make copy wala span visible
+copyMsg.classList.add("active");
+
+setTimeout(() => {
+  copyMsg.classList.remove("active");
+}, 2000);
+
+// eventlistener
+inputSlider.addEventListener("input", (e) => {
+  passwordLength = e.target.value;
+  handleSlider();
+});
+
+copyBtn.addEventListener("click", () => {
+  if (passwordDisplay.value) {
+    copyContent();
+  }
+});
