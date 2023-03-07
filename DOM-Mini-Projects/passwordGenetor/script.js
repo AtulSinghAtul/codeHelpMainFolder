@@ -21,6 +21,7 @@ handleSlider();
 // set passwordLength
 
 function handleSlider() {
+  // is function ka kam sirf itna hai ki ye passwordLength ko ui par reflect karwata hai.
   inputSlider.value = passwordLength;
   lengthDisplay.innerText = passwordLength;
 }
@@ -102,3 +103,35 @@ copyBtn.addEventListener("click", () => {
     copyContent();
   }
 });
+
+function handleCheckBoxChange() {
+  checkCount = 0;
+  allCheckBox.forEach((checkbox) => {
+    if (checkbox.checked) {
+      checkCount++;
+    }
+  });
+
+  // special condition
+  if (passwordLength < checkCount) {
+    passwordLength = checkCount;
+    handleSlider();
+  }
+  console.log(checkCount);
+}
+
+allCheckBox.forEach((checkbox) => {
+  checkbox.addEventListener("change", handleCheckBoxChange);
+});
+
+// generateBtn.addEventListener(() => {
+//   console.log("dfcgcg");
+// });
+
+// if (
+//   uppercaseCheck.checked ||
+//   lowercaseCheck.checked ||
+//   numbersCheck.checked ||
+//   symbolsCheck.checked
+// ) {
+// }
