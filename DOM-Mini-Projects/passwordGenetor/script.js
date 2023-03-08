@@ -14,7 +14,7 @@ let symbols = ",.`~!@#$%^&*()_-+=[]{}|;',?/<>:";
 
 let password = "";
 let passwordLength = 10;
-let checkCount = 1;
+let checkCount = 0;
 handleSlider();
 // set strength circle color to grey
 
@@ -77,6 +77,7 @@ function calcStrength() {
 }
 
 async function copyContent() {
+  // error handeling
   try {
     await navigator.clipboard.writeText(passwordDisplay.value);
     copyMsg.innerText = "copied";
@@ -91,6 +92,21 @@ copyMsg.classList.add("active");
 setTimeout(() => {
   copyMsg.classList.remove("active");
 }, 2000);
+
+function shufflePassword(array) {
+  // fisher Yates Method
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (1 * 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  let str = "";
+  array.forEach((el) => {
+    str += el;
+  });
+  return str;
+}
 
 // eventlistener
 inputSlider.addEventListener("input", (e) => {
@@ -124,14 +140,63 @@ allCheckBox.forEach((checkbox) => {
   checkbox.addEventListener("change", handleCheckBoxChange);
 });
 
-// generateBtn.addEventListener(() => {
-//   console.log("dfcgcg");
-// });
+generateBtn.addEventListener("click", () => {
+  // none of the checkbox are selected
+  if (checkCount <= 0) return;
 
-// if (
-//   uppercaseCheck.checked ||
-//   lowercaseCheck.checked ||
-//   numbersCheck.checked ||
-//   symbolsCheck.checked
-// ) {
-// }
+  if (passwordLength < checkCount) {
+    passwordLength = checkCount;
+    handleSlider();
+  }
+
+  //remove old password
+  password = "";
+
+  //lets put the stuff mentioned by checkboxes
+
+  // if (uppercaseCheck.checked) {
+  //   password = password + generateUpperCase();
+  // }
+  // if (lowercaseCheck.checked) {
+  //   password = password + generateLowerCase();
+  // }
+  // if (numbersCheck.checked) {
+  //   password = password + generateRandomInteger();
+  // }
+  // if (symbolsCheck.checked) {
+  //   password = password + generateSymbol();
+  // }
+
+  let funcArr = [];
+
+  if (uppercaseCheck.checked) {
+    funcArr.push(generateUpperCase);
+  }
+  if (lowercaseCheck.checked) {
+    funcArr.push(generateLowerCase);
+  }
+  if (numbersCheck.checked) {
+    funcArr.push(generateRandomInteger);
+  }
+  if (symbolsCheck.checked) {
+    funcArr.push(generateSymbol);
+  }
+
+  // compulsory addition
+  for (let i = 0; i < funcArr.length; i++) {
+    password = password + funcArr[i]();
+  }
+
+  // remaining addition
+  for (let i = 0; i < passwordLength - funcArr.length; i++) {
+    let randIndex = getRndInteger(0, funcArr.length);
+    password = password + funcArr[randIndex]();
+  }
+
+  // shuffle the password
+  password = shufflePassword(Array.from(password));
+  // show in UI
+  passwordDisplay.value = password;
+  // calculate strength
+  calcStrength();
+});
