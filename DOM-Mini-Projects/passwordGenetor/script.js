@@ -122,6 +122,7 @@ copyBtn.addEventListener("click", () => {
 
 function handleCheckBoxChange() {
   checkCount = 0;
+
   allCheckBox.forEach((checkbox) => {
     if (checkbox.checked) {
       checkCount++;
