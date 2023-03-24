@@ -1,6 +1,7 @@
 import logo from "../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import React from "react";
 
 function Navbar(props) {
   let isLoggedIn = props.isLoggedIn;
@@ -40,7 +41,7 @@ function Navbar(props) {
         )}
 
         {isLoggedIn && (
-          <Link to="/logout">
+          <Link to="/">
             <button
               onClick={() => {
                 setIsLoggedIn(false);
