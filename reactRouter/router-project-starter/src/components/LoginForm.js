@@ -17,9 +17,10 @@ function LoginForm({ setIsLoggedIn }) {
     event.preventDefault();
     const { name, value, type } = event.target;
 
-    setFormData((prevState) => {
-      return { ...prevState, [name]: value };
-    });
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   }
 
   function submitHandler(event) {
@@ -27,10 +28,6 @@ function LoginForm({ setIsLoggedIn }) {
     setIsLoggedIn(true);
     navigate("/dashboard");
     toast.success("Logged In");
-  }
-
-  function clickHandler() {
-    console.log("dashboard");
   }
 
   return (
@@ -69,7 +66,7 @@ function LoginForm({ setIsLoggedIn }) {
         </Link>
       </label>
 
-      <button onClick={clickHandler}>Sign In</button>
+      <button>Sign In</button>
     </form>
   );
 }

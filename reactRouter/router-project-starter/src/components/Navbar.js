@@ -7,6 +7,8 @@ function Navbar(props) {
   let isLoggedIn = props.isLoggedIn;
   let setIsLoggedIn = props.setIsLoggedIn;
 
+  console.log(isLoggedIn);
+
   return (
     <div className="flex flex-row justify-around items-center ">
       <Link to="/">
@@ -33,13 +35,11 @@ function Navbar(props) {
             <button>Login</button>
           </Link>
         )}
-
         {!isLoggedIn && (
           <Link to="/signup">
             <button>Sign Up</button>
           </Link>
         )}
-
         {isLoggedIn && (
           <Link to="/">
             <button
@@ -52,12 +52,12 @@ function Navbar(props) {
             </button>
           </Link>
         )}
-
         {isLoggedIn && (
           <Link to="/dashboard">
             <button>Dashboard</button>
           </Link>
-        )}
+        )}{" "}
+        }
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import SignupForm from "./SignupForm";
 import frameImage from "../assets/frame.png";
 
 function Templets({ title, desc1, desc2, image, formtype, setIsLoggedIn }) {
+  console.log("ye rha mera form type");
+  console.log(formtype);
   return (
     <div>
       <div>
@@ -16,7 +18,7 @@ function Templets({ title, desc1, desc2, image, formtype, setIsLoggedIn }) {
         {formtype === "signup" ? (
           <SignupForm setIsLoggedIn={setIsLoggedIn} />
         ) : (
-          <LoginForm setIsLoggedIn={setIsLoggedIn} /> //true
+          <LoginForm setIsLoggedIn={setIsLoggedIn} />
         )}
 
         <div>

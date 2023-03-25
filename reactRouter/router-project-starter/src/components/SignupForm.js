@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function SignupForm({ setIsLoggedIn }) {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState();
+  const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -25,8 +25,9 @@ function SignupForm({ setIsLoggedIn }) {
   function submitHandler(event) {
     event.preventDefault();
 
-    if (formData.password != formData.confirmPassword) {
-      return toast.error("Password do not match");
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Password do not match");
+      return;
     }
 
     setIsLoggedIn(true);
@@ -38,11 +39,6 @@ function SignupForm({ setIsLoggedIn }) {
     console.log(accountData);
 
     navigate("/dashboard");
-  }
-
-  function clickHandler() {
-    console.log("dashboard");
-    setIsLoggedIn(true);
   }
 
   return (
@@ -148,7 +144,7 @@ function SignupForm({ setIsLoggedIn }) {
           </label>
         </div>
 
-        <button onClick={clickHandler}>Create Account</button>
+        <button>Create Account</button>
       </form>
     </div>
   );
