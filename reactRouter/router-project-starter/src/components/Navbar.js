@@ -10,13 +10,13 @@ function Navbar(props) {
   console.log(isLoggedIn);
 
   return (
-    <div className="flex flex-row justify-around items-center ">
+    <div className="flex flex-row justify-between items-center  w-11/12 max-w-[1160px] py-4 mx-auto">
       <Link to="/">
         <img src={logo} width={160} height={32} loading="lazy" />
       </Link>
 
       <nav>
-        <ul className="flex flex-row justify-center items-center gap-x-2">
+        <ul className="flex flex-row justify-center items-center gap-x-6 text-richblack-100">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -29,20 +29,25 @@ function Navbar(props) {
         </ul>
       </nav>
 
-      <div className="flex flex-row justify-center items-center gap-x-2">
+      <div className="flex items-center gap-x-4 ">
         {!isLoggedIn && (
           <Link to="/login">
-            <button>Login</button>
+            <button className="bg-richblack-800 text-richblack-100 py-[8px] px-[12px] rounded-[8px] border border-rich-700">
+              Login
+            </button>
           </Link>
         )}
         {!isLoggedIn && (
           <Link to="/signup">
-            <button>Sign Up</button>
+            <button className="bg-richblack-800 text-richblack-100 py-[8px] px-[12px] rounded-[8px] border border-rich-700">
+              Sign Up
+            </button>
           </Link>
         )}
         {isLoggedIn && (
           <Link to="/">
             <button
+              className="bg-richblack-800 text-richblack-100 py-[8px] px-[12px] rounded-[8px] border border-rich-700"
               onClick={() => {
                 setIsLoggedIn(false);
                 toast.success("Logged Out");
@@ -54,10 +59,11 @@ function Navbar(props) {
         )}
         {isLoggedIn && (
           <Link to="/dashboard">
-            <button>Dashboard</button>
+            <button className="bg-richblack-800 text-richblack-100 py-[8px] px-[12px] rounded-[8px] border border-rich-700">
+              Dashboard
+            </button>
           </Link>
-        )}{" "}
-        }
+        )}
       </div>
     </div>
   );
