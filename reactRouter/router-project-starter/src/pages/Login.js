@@ -2,7 +2,7 @@ import React from "react";
 import Templets from "../components/Templets";
 import loginImg from "../assets/login.png";
 
-function Login({ setIsLoggedIn }) {
+const Login = ({ setIsLoggedIn }) => {
   return (
     <Templets
       title="Welcome Back"
@@ -13,6 +13,6 @@ function Login({ setIsLoggedIn }) {
       setIsLoggedIn={setIsLoggedIn}
     />
   );
-}
+};
 
 export default Login;
