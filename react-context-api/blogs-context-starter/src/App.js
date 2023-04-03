@@ -6,19 +6,19 @@ import { AppContext } from "./context/AppContext";
 import DarkMode from "./components/DarkMode";
 import "./App.css";
 
+
 export default function App() {
   const { fetchBlogPosts } = useContext(AppContext);
+
+ 
 
   useEffect(() => {
     fetchBlogPosts();
   }, []);
 
   return (
-    <div className="w-screen h-full flex flex-col justify-center items-center gap-y-6">
-      <DarkMode />
-      <Header />
-      <Blogs />
-      <Pagination />
-    </div>
+    <routes>
+    <route path="/">{<Home />}</route>
+  </routes>;
   );
 }

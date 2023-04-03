@@ -29,24 +29,30 @@ function AppContextProvider({ children }) {
   };
 
   //* step -1(A-b): fetching api data
-  async function fetchBlogPosts(page = 1) {
+  async function fetchBlogPosts(page = 1, tag, category) {
     setLoading(true);
 
-    const url = `${baseUrl}?page=${page}`;
-    // let url = "https://codehelp-apis.vercel.app/api/get-blogs?page=1";
-    //https://codehelp-apis.vercel.app/api/get-blogs?page=1
+    let url = `${baseUrl}?page=${page}`;
+    if (tag) {
+      url = url + `&tag=${tag}`;
+    }
+    if (category) {
+      url = url + `&category=${category}`;
+    }
+
     console.log(url);
 
     try {
       const result = await fetch(url);
       const data = await result.json();
-      console.log(data);
-      console.log(data.posts);
+      if (!data.posts || data.posts.length === 0)
+        throw new Error("Something went wrong");
+
       setPage(data.page);
       setPosts(data.posts);
       setTotalPages(data.totalPages);
     } catch (error) {
-      console.log("Api fat gayi");
+      console.log("Error in Fetching BlogPosts", error);
       setPage(1);
       setPosts([]);
       setTotalPages(null);
