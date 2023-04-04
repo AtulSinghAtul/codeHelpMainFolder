@@ -1,43 +1,33 @@
 import { createContext, useState } from "react";
 import { baseUrl } from "../baseUrl";
+import { useNavigate } from "react-router-dom";
 
 //! step -1: create context
 
 export const AppContext = createContext();
-console.log(AppContext);
 
 //* step -1(A): preparing data
 
 function AppContextProvider({ children }) {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
-
-  //* step -1(A-a): data filling
-  const value = {
-    loading,
-    setLoading,
-    posts,
-    setPosts,
-    page,
-    setPage,
-    totalPages,
-    setTotalPages,
-    fetchBlogPosts,
-    handlePageChange,
-  };
+  // console.log(loading);
 
   //* step -1(A-b): fetching api data
-  async function fetchBlogPosts(page = 1, tag, category) {
+  async function fetchBlogPosts(page = 1, tag = null, category) {
+    console.log(category);
     setLoading(true);
 
     let url = `${baseUrl}?page=${page}`;
+
     if (tag) {
-      url = url + `&tag=${tag}`;
+      url += `&tag=${tag}`;
     }
     if (category) {
-      url = url + `&category=${category}`;
+      url += `&category=${category}`;
     }
 
     console.log(url);
@@ -47,6 +37,9 @@ function AppContextProvider({ children }) {
       const data = await result.json();
       if (!data.posts || data.posts.length === 0)
         throw new Error("Something went wrong");
+
+      // console.log(result);
+      console.log(data);
 
       setPage(data.page);
       setPosts(data.posts);
@@ -62,17 +55,27 @@ function AppContextProvider({ children }) {
   }
   //* step -1(A-c): Handle change page
   function handlePageChange(page) {
+    // fetchBlogPosts(page);
+    navigate({ search: `?page=${page}` });
     setPage(page);
-    fetchBlogPosts(page);
   }
 
+  //* step -1(A-a): data filling
+  const value = {
+    loading,
+    setLoading,
+    posts,
+    setPosts,
+    page,
+    setPage,
+    totalPages,
+    setTotalPages,
+    fetchBlogPosts,
+    handlePageChange,
+  };
+
   //! Step- 2 Providing data
-  return (
-    <AppContext.Provider value={value}>
-      {children}
-      {console.log(children)}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
 
 export default AppContextProvider;

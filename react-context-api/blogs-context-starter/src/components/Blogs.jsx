@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import Spinner from "../components/Spinner";
-import Card from "./Card";
-
-// import Card from "../components/Card";
+import BlogDetailes from "./BlogDetailes";
 
 const Blogs = () => {
   // consume data from context
@@ -14,9 +12,9 @@ const Blogs = () => {
       {loading ? (
         <Spinner />
       ) : posts.length === 0 ? (
-        <p>No post found</p>
+        <p>No Blogs found</p>
       ) : (
-        posts.map((post) => <Card post={post} />)
+        posts.map((post) => <BlogDetailes key={post.id} post={post} />)
       )}
     </div>
   );
