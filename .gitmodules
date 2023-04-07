@@ -1,2 +1,4 @@
-[submodule "react-class-code/routerapp'"]
-	url = https://github.com/AtulSinghAtul/codeHelpMainFolder/tree/main/react-class-code/routerapp.git
+[submodule "react-class-code/routerapp"]
+    path = react-class-code/routerapp
+    url = https://github.com/react-class-code/routerapp.git
+
