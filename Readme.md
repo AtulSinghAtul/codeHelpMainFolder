@@ -15,5 +15,5 @@
 ---
 # React Projects
 
-- ###[Shopping cart App - Redux](https://github.com/AtulSinghAtul/codeHelpMainFolder/tree/main/react-advance-class/shopping-cart-app-using-redux)
+- ### [Shopping cart App - Redux](https://github.com/AtulSinghAtul/codeHelpMainFolder/tree/main/react-advance-class/shopping-cart-app-using-redux)
 
