@@ -4,7 +4,7 @@ import React from "react";
 const Spinner = () => {
   return (
     <div>
-      <div className="Loader"></div>
+      <div className="spinner"></div>
     </div>
   );
 };

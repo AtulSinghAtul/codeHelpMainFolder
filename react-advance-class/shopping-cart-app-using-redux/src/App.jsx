@@ -5,8 +5,11 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
+    <div className="relative">
+      <div className="bg-slate-900 fixed top-0 z-[100] w-screen ">
+        <Navbar />
+      </div>
+
       <div>
         {/* <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/cart"}>Cart</NavLink> */}
