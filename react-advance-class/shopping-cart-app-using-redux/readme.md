@@ -1,6 +1,6 @@
 # React Redux Project : Shopping Cart App
 
-- ## [Project Live Link](https://fsjs2-12th-dec-project-11.netlify.app/)
+- ## [Project Live Link](https://shopping-cart-app-codehelp.netlify.app/)
 
 > ### Social Media Links:
 
