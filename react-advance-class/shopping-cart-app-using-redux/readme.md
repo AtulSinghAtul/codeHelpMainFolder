@@ -64,6 +64,13 @@ export const store = configureStore({
 
 ---
 
-![Project Screenshot](https://img.shields.io/badge/LiveClass--12thDec-Project--11-blue)
+![Project Screenshot](https://img.shields.io/badge/ShoppingCartApp--ReactReduxProject-blue)
+![shopping-cart-home-page](https://user-images.githubusercontent.com/112545072/230768808-59d32d33-5416-4d19-8a98-8817d3f1200a.png)
 
-![real state](https://user-images.githubusercontent.com/112545072/210151346-4a67a2ef-10fe-4ed6-9587-3146b06f5878.png)
+![shopping-cart-page](https://user-images.githubusercontent.com/112545072/230768819-f9ddce11-ccbd-443e-af80-241e3714e57f.png)
+
+
+
+
+
+
