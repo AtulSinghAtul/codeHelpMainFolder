@@ -12,13 +12,16 @@ export default function AppContextProvider({ children }) {
   const navigate = useNavigate();
 
   // Fetch Blog Data
-  const fetchBlogPosts = async (page = 1, tag=null, category) => {
+  const fetchBlogPosts = async (page = 1, tag = null, category) => {
+    console.log(loading);
     setLoading(true);
+    console.log(loading);
+
     let url = `${baseUrl}?page=${page}`;
-    if(tag) {
+    if (tag) {
       url += `&tag=${tag}`;
     }
-    if(category) {
+    if (category) {
       url += `&category=${category}`;
     }
     try {
@@ -36,12 +39,14 @@ export default function AppContextProvider({ children }) {
       setPosts([]);
       setTotalPages(null);
     }
+    console.log(loading);
     setLoading(false);
+    console.log(loading);
   };
 
   // Handle When Next and Previous button are clicked
   const handlePageChange = (page) => {
-    navigate( { search: `?page=${page}`});
+    navigate({ search: `?page=${page}` });
     setPage(page);
   };
 
