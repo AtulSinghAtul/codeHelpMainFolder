@@ -11,6 +11,7 @@ const TagPage = () => {
 
   function clickHandler() {
     navigate(-1);
+    console.log("aaaaaaaaaa");
   }
 
   return (
@@ -19,7 +20,7 @@ const TagPage = () => {
       <div className="flex flex-col justify-center items-center">
         <div className="relative -z-30 top-20 -left-[190px] my-8 flex  gap-4 ">
           <button
-            className="text-white px-5 py-2 rounded-md bg-red-500"
+            className="text-white  px-5 py-2 rounded-md bg-yellow-500"
             onClick={clickHandler}
           >
             back
