@@ -2,19 +2,16 @@
 const Todo = require("../models/Todo");
 
 //define route handler
-exports.createTodo = async (req, res) => {
+exports.getTodo = async (req, res) => {
   try {
-    // extract title and description from request body
-    const { title, description } = req.body;
-
-    // create a new todo obj and insert in db
-    const response = await Todo.create({ title, description });
+    // using find function get all todo items from database
+    const todos = await Todo.find({});
 
     // send a json response with a success flag
     res.status(200).json({
       success: true,
-      data: response,
-      message: "Entry Created Successfully",
+      data: todos,
+      message: "Entire todo data is fetched",
     });
   } catch (err) {
     console.log(err);
