@@ -22,14 +22,17 @@ exports.createComment = async (req, res) => {
     // find the post by id, add the new comment to its comments array
     const updatedPost = await Post.findByIdAndUpdate(
       post,
-      { $push: { comments: saveComment._id } },
+      { $push: { comment: saveComment._id } },
       { new: true }
     )
-      .populate("comments")
+      .populate("comment")
       .exec(); // populate the comments array with comment document
+    res.json({
+      post: updatedPost,
+    });
   } catch (error) {
     return res.status(500).json({
-      error: "Error while creating comments",
+      error: `Error while creating comments ${error.message}`,
     });
   }
 };
