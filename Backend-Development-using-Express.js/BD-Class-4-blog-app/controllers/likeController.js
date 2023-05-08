@@ -10,10 +10,10 @@ exports.likePost = async (req, res) => {
       user,
     });
 
-    const savedLike = likeObject.save();
+    const savedLike = await likeObject.save();
 
     // update the post collection basis on this
-    const updatedPost = Post.findByIdAndUpdate(
+    const updatedPost = await Post.findByIdAndUpdate(
       post,
       {
         $push: { like: savedLike._id },
@@ -22,12 +22,14 @@ exports.likePost = async (req, res) => {
     )
       .populate("like")
       .exec();
+
+    // console.log(updatedPost);
     res.json({
       post: updatedPost,
     });
   } catch (error) {
     return res.status(500).json({
-      err: "error like",
+      err: `Error while liking post ${error.message}`,
     });
   }
 };
@@ -40,7 +42,7 @@ exports.unlikePost = async (req, res) => {
     const deletedLike = await Like.findOneAndDelete({ post: post, _id: like });
 
     //update the post collection
-    const updatedPost = await Post.findByIdAndDelete(
+    const updatedPost = await Post.findByIdAndUpdate(
       post,
       {
         $pull: { like: deletedLike._id },
@@ -57,5 +59,3 @@ exports.unlikePost = async (req, res) => {
     });
   }
 };
-
-//
