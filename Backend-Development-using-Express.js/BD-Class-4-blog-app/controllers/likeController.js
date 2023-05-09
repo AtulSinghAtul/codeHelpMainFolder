@@ -23,7 +23,7 @@ exports.likePost = async (req, res) => {
       .populate("like")
       .exec();
 
-    // console.log(updatedPost);
+    console.log(updatedPost);
     res.json({
       post: updatedPost,
     });
