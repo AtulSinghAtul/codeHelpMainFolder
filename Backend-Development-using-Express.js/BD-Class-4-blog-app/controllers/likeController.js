@@ -49,7 +49,6 @@ exports.unlikePost = async (req, res) => {
       },
       { new: true }
     );
-
     res.json({
       post: updatedPost,
     });
