@@ -13,7 +13,7 @@ dbConnect();
 
 //import route and mount
 const user = require("./routes/user");
-app.use("api/v1", user);
+app.use("/api/v1", user);
 
 //server activate
 app.listen(PORT, () => {
