@@ -93,6 +93,7 @@ exports.login = async (req, res) => {
       // user = user.toObject();
       //user k object me token save kara diya
       user.token = token;
+      console.log(typeof user);
 
       // user k object se ham password ko hta rhe hain na ki db se
       user.password = undefined;
@@ -103,6 +104,7 @@ exports.login = async (req, res) => {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
+
       res.cookie("atulToken", token, options).status(200).json({
         success: true,
         token,
@@ -110,6 +112,13 @@ exports.login = async (req, res) => {
 
         message: "User Logged in Successfully",
       });
+      // res.status(200).json({
+      //   success: true,
+      //   token,
+      //   user,
+
+      //   message: "User Logged in Successfully",
+      // });
     } else {
       return res.status(403).json({
         success: false,
