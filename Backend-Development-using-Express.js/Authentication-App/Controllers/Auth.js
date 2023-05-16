@@ -106,7 +106,7 @@ exports.login = async (req, res) => {
         httpOnly: true,
       };
 
-      res.cookie("atulToken", token, options).status(200).json({
+      return res.cookie("atulToken", token, options).status(200).json({
         success: true,
         token,
         user,

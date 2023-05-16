@@ -3,6 +3,7 @@ const router = express.Router();
 const { auth, isStudent, isAdmin } = require("../Middlwares/auth");
 
 const { login, signUp } = require("../Controllers/Auth");
+const { User } = require("../models/User");
 
 router.post("/login", login);
 router.post("/signUp", signUp);
@@ -29,5 +30,22 @@ router.get("/admin", auth, isAdmin, (req, res) => {
   });
 });
 
-console.log("route");
+// how find whole user data by id from payload
+router.get("/getEmail", auth, async (req, res) => {
+  try {
+    const id = req.user.id;
+    const user = await User.findById({ id });
+    res.status(200).json({
+      success: true,
+      user: user,
+      message: "mail route",
+    });
+  } catch (error) {
+    return res.status(200).json({
+      success: false,
+      error: error.message,
+      message: "fatt gya",
+    });
+  }
+});
 module.exports = router;
