@@ -55,6 +55,7 @@ exports.signUp = async (req, res) => {
 
 //* login route handler
 exports.login = async (req, res) => {
+  console.log("login");
   try {
     // data fetch from request body using body parser
     const { email, password } = req.body;
@@ -81,7 +82,7 @@ exports.login = async (req, res) => {
       role: user.role,
     };
 
-    // verify password and generate jwt token
+    //^ verify password and generate jwt token
     if (await bcrypt.compare(password, user.password)) {
       // password match then logged in but first create JWT(Json Web Token)
 
@@ -109,16 +110,8 @@ exports.login = async (req, res) => {
         success: true,
         token,
         user,
-
         message: "User Logged in Successfully",
       });
-      // res.status(200).json({
-      //   success: true,
-      //   token,
-      //   user,
-
-      //   message: "User Logged in Successfully",
-      // });
     } else {
       return res.status(403).json({
         success: false,

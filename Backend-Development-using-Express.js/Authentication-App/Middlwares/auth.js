@@ -9,8 +9,10 @@ exports.auth = (req, res, next) => {
     //! PENDING: other ways to fetch token
     console.log("body", req.body.token);
     console.log("cookies", req.cookies.token);
-    console.log("header", req.header("authorization").replace("Bearer ", ""));
-    const token = req.body.token;
+    // console.log("header", req.header("Authorization").replace("Bearer ", ""));
+
+    const { token } = req.body;
+
     console.log(token);
     if (!token) {
       return res.status(401).json({

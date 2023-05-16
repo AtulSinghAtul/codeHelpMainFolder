@@ -29,4 +29,5 @@ router.get("/admin", auth, isAdmin, (req, res) => {
   });
 });
 
+console.log("route");
 module.exports = router;
