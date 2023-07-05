@@ -15,7 +15,8 @@ const fileUpload = require("express-fileupload");
 
 app.use(
   fileUpload({
-    tempFilePath: true,
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
   })
 );
 
